@@ -1,0 +1,40 @@
+linux basic assignment
+
+Q1  mkdir -p a/{b/{d/{i/m/z,j/l/z},e/h/l/z},c/{f/h/l/z,g/k/l/z}}
+
+Q2  chmod -x /usr/bin/date
+ls -l /usr/bin/date
+adduser -s /usr/bin/date  tom 
+setfacl -m  u:tom:rwx /usr/bin/date
+su - tom
+setfacl -m u:root:--- /usr/bin/date
+chmod -x /usr/bin/date
+date
+
+Q3 adduser A
+su - A
+mkdir one
+cd one
+touch one.txt
+exit
+
+adduser B 
+su - B 
+mkdir two
+cd two
+touch two.txt
+exit
+
+su -A 
+setfacl -m u:B:rw /home/A
+exit
+
+su -B 
+setfacl -m u:A:rw /home/B
+exit
+
+cp -r /home/A/one  /home/B
+cp -r /home/B/two  /home/A 
+
+
+Q4 watch -n 10 cal > /tmp/a.txt
